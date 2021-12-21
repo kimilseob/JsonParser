@@ -1,6 +1,5 @@
 #define TOKEN_COUNT 20
 
-
 typedef enum _TOKEN_TYPE {
         TOKEN_STRING,
         TOKEN_NUMBER,

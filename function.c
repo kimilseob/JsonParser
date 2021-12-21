@@ -1,7 +1,8 @@
+#include "function.h"
 
 char *readfile(char *filename , int *readsize)
 {
-	File *fp = fopen(filename , "rb");
+	FILE *fp = fopen(filename , "rb");
 	if (fp == NULL)
 	   return NULL;
 
@@ -38,7 +39,7 @@ void parseJSON(char *doc, int size, JSON *json)
 	int tokenIndex = 0;
 	int pos = 0;
 	
-	if (doc[pos] ! '{')
+	if (doc[pos] != '{')
 		return;
 
 	pos++;
@@ -62,8 +63,10 @@ void parseJSON(char *doc, int size, JSON *json)
 			// 토큰 배열에 문자열저장
 			// 토큰 종류는 문자열
 			json->tokens[tokenIndex].type = TOKEN_STRING;
+
 			// 문자열 길이 + NULL 공간만큼 메모리 할당
 			json->tokens[tokenIndex].string = malloc(stringLength + 1);
+
 			// 할당한 메모리를 0으로 초기화
 			memset(json->tokens[tokenIndex].string , 0 , stringLength + 1);
 
@@ -83,4 +86,13 @@ void parseJSON(char *doc, int size, JSON *json)
 		pos++; // 다음 문자로
 	}
 
+}
+
+void freeJSON(JSON *json)
+{
+	for(int i = 0; i < TOKEN_COUNT; i++)
+	{
+		if (json->tokens[i].type == TOKEN_STRING)
+			free(json->tokens[i].string);
+	}
 }
