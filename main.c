@@ -12,11 +12,11 @@ int main()
 	parseJSON(doc, size, &json);
 
 	printf("Title: %s\n", json.tokens[0].string);
-	printf("Genre: %s\n", json.tokens[1].string);
+	printf("Inception: %s\n", json.tokens[1].string);
 	printf("Genre: %s\n", json.tokens[2].string);
-	printf("Title: %s\n", json.tokens[3].string);
+	printf("Sci-Fi: %s\n", json.tokens[3].string);
 	printf("Director: %s\n", json.tokens[4].string);
-	printf("Title: %s\n", json.tokens[5].string);
+	printf("Christopher Nolan: %s\n", json.tokens[5].string);
 
 	freeJSON(&json);
 
